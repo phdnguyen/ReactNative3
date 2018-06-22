@@ -1,1 +1,2 @@
 Name: Nguyen Duc Phong
+DOB: 07/01/1995
