@@ -5,21 +5,33 @@ import {
   FlatList,
 } from 'react-native';
 
-import {data} from './database.json'; 
+import React, { Component } from 'react';
+import {
+  FlatList
+} from 'react-native';
+import Orientation from 'react-native-orientation';
+
+import { data } from './database.json'
 import ComicListItem from './ComicListItem';
 
 class ComicListScreen extends Component {
-  state = {  }
+  state = {}
+
+  renderItem = ({item}) => <ComicListItem comic={item}
+  navigation = {this.props.navigation}/>
+
+
   keyExtractor = (item, index) => item.id
-  renderItem = ({item}) => <ComicListItem/>
+
   render() {
+    Orientation.lockToPortrait()
     return (
-    <FlatList
-    data = {data}
-    renderItem = {this.renderItem}
-    numColumns = '2'
-    keyExtractor = {this.keyExtractor}
-    />
+      <FlatList
+        data={data}
+        renderItem={this.renderItem}
+        numColumns='2'
+        keyExtractor={this.keyExtractor}
+      />
     );
   }
 }

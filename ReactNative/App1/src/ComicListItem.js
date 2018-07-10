@@ -1,35 +1,47 @@
 import React, { Component } from 'react';
 import {
-Image,
   Text,
-  View,
+  TouchableOpacity,
+  Image,
   StyleSheet,
   Dimensions
 } from 'react-native';
 
 class ComicListItem extends Component {
-  state = {  }
+  state = {}
   render() {
+    console.log('hihihih')
     return (
-    <View style = {styles.container}>
+      <TouchableOpacity style={styles.container}
+      onPress={() => this.props.navigation.navigate('ComicDetail', {comic: this.props.comic})}>
         <Image
-        source = {{uri: 'https://api.techkids.vn/reactnative/media/comic/lokcomic7-chatbeop1/02.jpg'}} style = {styles.image}/>
-        <Text style = {styles.text}>LOK Comic #7 - Chất béo (P.1)</Text>
-    </View>
+          style={styles.image}
+          source={{ uri: this.props.comic.photos[0] }} />
+        <Text
+          style={styles.text}
+          numberOfLines={2}
+          >{this.props.comic.title}
+        </Text>
+      </TouchableOpacity>
     );
   }
 }
 
+//1 inch ~ 160dp
+
 const styles = StyleSheet.create({
-    container: {
-        height: 220,
-        width: Dimensions.get('window').width/2,
-    },
-    image: {
-        height: 175,
-    },
-    text: {
-        fontWeight: "bold",
-    },
-});
+  container: {
+    height: 250,
+    width: Dimensions.get('window').width / 2,
+    padding: 5
+  },
+  image: {
+    height: 200
+  },
+  text: {
+    fontSize: 16,
+    fontWeight: 'bold'
+  }
+})
+
 export default ComicListItem;
